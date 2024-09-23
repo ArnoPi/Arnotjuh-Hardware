@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arnotjuh.be</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .chatbox {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 300px;
+      max-width: 100%;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .chatbox-header {
+      background: #4a76a8;
+      color: white;
+      padding: 10px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top-left-radius: 10px;
+      border-top-right-radius: 10px;
+    }
+    .chatbox-body {
+      display: none;
+      background: white;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+    .chatbox-body.open {
+      display: block;
+    }
+    .chatbox-form {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+  </style>
+</head>
+<body class="bg-white text-gray-800">
+  <!-- Header -->
+  <header class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-white text-2xl font-bold">Arnotjuh.be</div>
+      <nav class="space-x-4">
+        <a href="/desktop" class="text-white">Desktop Computers</a>
+        <a href="/gaming" class="text-white">Game Computers</a>
+        <a href="/laptop" class="text-white">Laptops</a>
+        <a href="#" class="text-white">Gallerij</a>
+        <a href="#" class="text-white">Contacteren</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-lightblue-500 py-20">
+    <div class="container mx-auto text-center">
+      <h1 class="text-4xl font-bold text-blue-900">Arnotjuh.be Hardware</h1>
+      <p class="mt-4 text-blue-700">Hulp nodig bij het bouwen van een computer of algemene hardware-ondersteuning?<br>Regio Oost & West-Vlaanderen</p>
+      <div class="mt-8">
+        <button class="bg-blue-600 text-white px-8 py-4 rounded">Start Nu</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-16">
+    <div class="container mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      <div>
+        <div class="text-blue-500 text-3xl mb-4">🔧</div>
+        <h2 class="text-xl font-bold text-blue-900">Alles-in-1 Hulp</h2>
+        <p class="text-blue-700">Of je nu hulp nodig hebt met hardware of software, wij bieden complete ondersteuning voor al je behoeften.</p>
+      </div>
+      <div>
+        <div class="text-blue-500 text-3xl mb-4">🖥️</div>
+        <h2 class="text-xl font-bold text-blue-900">Hardware Ondersteuning</h2>
+        <p class="text-blue-700">Van het bouwen van een nieuwe pc tot het upgraden van componenten, wij staan klaar om je te helpen.</p>
+      </div>
+      <div>
+        <div class="text-blue-500 text-3xl mb-4">💾</div>
+        <h2 class="text-xl font-bold text-blue-900">Software Ondersteuning</h2>
+        <p class="text-blue-700">Problemen met software? Wij bieden hulp bij installatie, configuratie en probleemoplossing.</p>
+      </div>
+      <div>
+        <div class="text-blue-500 text-3xl mb-4">📞</div>
+        <h2 class="text-xl font-bold text-blue-900">24/7 Ondersteuning</h2>
+        <p class="text-blue-700">Onze experts staan altijd klaar om je te helpen, waar en wanneer je ons nodig hebt.</p>
+      </div>
+    </div>
+  </section>
+<!-- FAQ Section -->
+<section class="py-16 bg-gray-100">
+  <div class="container mx-auto">
+    <h2 class="text-3xl font-bold text-blue-900 text-center mb-8">Veelgestelde vragen</h2>
+    <div class="bg-white p-8 rounded-lg shadow-md max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <details class="group">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-blue-700">
+            <span>Levert Arnotjuh.be ook een service waarbij ze thuis een computer komen bouwen?</span>
+            <span class="ml-2 transition-transform duration-200 transform group-open:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.48l3.71-3.29a.75.75 0 111.04 1.08l-4.25 3.75a.75.75 0 01-1.06 0l-4.25-3.75a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-2 text-blue-700 leading-relaxed">Ja, wij bieden ook de service om bij u thuis in de regio Oost- en West-Vlaanderen een computer te bouwen. Daarnaast kunt u ervoor kiezen om de computer bij ons te laten bouwen en wij leveren deze dan persoonlijk bij u af.</p>
+        </details>
+        <details class="group">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-blue-700">
+            <span>Biedt Arnotjuh.be ook diensten aan voor zakelijke klanten?</span>
+            <span class="ml-2 transition-transform duration-200 transform group-open:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.48l3.71-3.29a.75.75 0 111.04 1.08l-4.25 3.75a.75.75 0 01-1.06 0l-4.25-3.75a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-2 text-blue-700 leading-relaxed">Ja, wij helpen zowel particuliere als zakelijke klanten met plezier.</p>
+        </details>
+        <details class="group">
+          <summary class="flex justify-between items-center font-medium cursor-pointer list-none text-blue-700">
+            <span>Hoe kan ik contact opnemen met Arnotjuh.be?</span>
+            <span class="ml-2 transition-transform duration-200 transform group-open:rotate-180">
+              <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06-.02L10 10.48l3.71-3.29a.75.75 0 111.04 1.08l-4.25 3.75a.75.75 0 01-1.06 0l-4.25-3.75a.75.75 0 01-.02-1.06z" clip-rule="evenodd" />
+              </svg>
+            </span>
+          </summary>
+          <p class="mt-2 text-blue-700 leading-relaxed">U kunt contact met ons opnemen via e-mail (support@arnotjuh.be) of via ons <a href="/contact">contactformulier</a>.</p>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Customer Reviews Section -->
+  <section class="bg-white-100 py-16">
+    <div class="container mx-auto text-center">
+      <h2 class="text-3xl font-bold text-blue-900">Wat onze klanten zeggen</h2>
+      <div class="mt-12 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-white p-8 rounded shadow">
+          <p class="text-blue-700">"Geweldige service! Mijn nieuwe pc werkt perfect."</p>
+          <p class="mt-4 text-blue-900 font-bold">- Jan de Vries</p>
+        </div>
+        <div class="bg-white p-8 rounded shadow">
+          <p class="text-blue-700">"Professionele hulp bij het installeren van mijn software."</p>
+          <p class="mt-4 text-blue-900 font-bold">- Lisa van der Meer</p>
+        </div>
+        <div class="bg-white p-8 rounded shadow">
+          <p class="text-blue-700">"24/7 ondersteuning is echt een levensredder!"</p>
+          <p class="mt-4 text-blue-900 font-bold">- Tom Janssen</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-blue-500 p-4">
+    <div class="container mx-auto text-center text-white">
+      <p>&copy; 2024 Arnotjuh.be. Alle rechten voorbehouden.</p>
+    </div>
+  </footer>
+</body>
+</html>

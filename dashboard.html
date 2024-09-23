@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Arnotjuh.be</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .chat-list {
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    .chat-item {
+      padding: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+    .chat-item:last-child {
+      border-bottom: none;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+  <header class="bg-blue-500 p-4">
+    <div class="container mx-auto flex justify-between items-center">
+      <div class="text-white text-2xl font-bold">Dashboard</div>
+      <nav class="space-x-4">
+        <a href="/profile" class="text-white">Profile</a>
+        <a href="/logout" class="text-white">Logout</a>
+      </nav>
+    </div>
+  </header>
+  <main class="container mx-auto p-8">
+    <h1 class="text-3xl font-bold text-blue-900">Welkom op je dashboard</h1>
+    <p class="mt-4 text-blue-700">Hier kun je je activiteiten en statistieken bekijken.</p>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
+      <div>
+        <canvas id="loginChart" class="w-full h-64"></canvas>
+      </div>
+      <div>
+        <canvas id="visitorChart" class="w-full h-64"></canvas>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    async function fetchLoginStats() {
+      const response = await fetch('/login-stats');
+      const data = await response.json();
+      return data;
+    }
+
+    async function fetchVisitorStats() {
+      const response = await fetch('/visitor-stats');
+      const data = await response.json();
+      return data;
+    }
+
+    async function fetchChats() {
+      const response = await fetch('/api/chats');
+      const data = await response.json();
+      return data;
+    }
+
+    async function updateChart(chart, stats) {
+      const labels = stats.map(stat => stat._id);
+      const counts = stats.map(stat => stat.count);
+
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = counts;
+      chart.update();
+    }
+
+    window.onload = async function() {
+      const loginCtx = document.getElementById('loginChart').getContext('2d');
+      const visitorCtx = document.getElementById('visitorChart').getContext('2d');
+
+      const loginChart = new Chart(loginCtx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Aantal logins per dag',
+            data: [],
+            backgroundColor: 'rgba(54, 162, 235, 0.2)',
+            borderColor: 'rgba(54, 162, 235, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      const visitorChart = new Chart(visitorCtx, {
+        type: 'line',
+        data: {
+          labels: [],
+          datasets: [{
+            label: 'Aantal bezoekers per dag',
+            data: [],
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderColor: 'rgba(75, 192, 192, 1)',
+            borderWidth: 1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+
+      await updateChart(loginChart, await fetchLoginStats());
+      await updateChart(visitorChart, await fetchVisitorStats());
+      await updateChats();
+
+      setInterval(async () => {
+        await updateChart(loginChart, await fetchLoginStats());
+        await updateChart(visitorChart, await fetchVisitorStats());
+        await updateChats();
+      }, 60000);
+    };
+  </script>
+</body>
+</html>
